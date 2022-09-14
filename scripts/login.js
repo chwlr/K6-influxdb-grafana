@@ -27,7 +27,7 @@ export let thinktime2 = 2.0;
 let username = "chris.rondonuwu@nadihealth.com";
 let password = "Made4mi123";
 
-// We export this function as other test cases might want to use it to authenticate
+// use this function later on other script for login
 export function accountLogin(username, password, debug) {
 	var url = urlbase + "/v1/customer/auth/login";
 	var payload = { email: username, password: password };
@@ -35,6 +35,7 @@ export function accountLogin(username, password, debug) {
 	if (typeof debug !== 'undefined') {
 		console.log("Login: status=" + String(res.status) + "  Body=" + res.body);
 	}
+	console.log(res)
 	return res;
 };
 
@@ -44,7 +45,6 @@ export default function() {
 		var res = accountLogin(username, password);
 		check(res, {
 			"status is 200": (res) => res.status === 200,
-			"content-type is application/json": (res) => res.headers['Content-Type'] === "application/json",
 			"login successful": (res) => JSON.parse(res.body).hasOwnProperty('token')
 		});
 		myTrend.add(res.timings.duration);
