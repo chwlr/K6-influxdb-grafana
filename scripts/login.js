@@ -17,7 +17,7 @@ export let options = {
 export let myTrend = new Trend("transaction_time");
 
 // Base URL that we prepend to all URLs we use
-export let urlbase = "https://staging.api.nadihealth.com";
+export let urlbase = "https://testing.api.nadihealth.com";
 
 // Think times, to slow down execution
 export let thinktime1 = 0.1;
@@ -32,8 +32,9 @@ export function accountLogin(username, password, debug) {
 	var url = urlbase + "/v1/customer/auth/login";
 	var payload = { email: username, password: password };
 	var res = http.post(url, JSON.stringify(payload), { headers: { "Content-Type": "application/json" } });
-	if (typeof debug !== 'undefined')
+	if (typeof debug !== 'undefined') {
 		console.log("Login: status=" + String(res.status) + "  Body=" + res.body);
+	}
 	return res;
 };
 
