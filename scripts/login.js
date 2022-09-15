@@ -2,6 +2,13 @@ import http from "k6/http";
 import { group, sleep, check } from "k6";
 import { Trend } from "k6/metrics";
 
+export let myTrend = new Trend("transaction_time");
+export let urlbase = "https://testing.api.nadihealth.com";
+
+// please change this later with your credential
+let username = "chris.rondonuwu@nadihealth.com";
+let password = "Made4mi123";
+
 // Default runtime options
 export let options = {
 	vus: 1,
@@ -12,20 +19,6 @@ export let options = {
 	}
 };
 
-// Create a Trend metric to hold transaction time data samples from the HTTP calls to the various end points
-// Please see note below about this metric and the thresholds set in 'options' above
-export let myTrend = new Trend("transaction_time");
-
-// Base URL that we prepend to all URLs we use
-export let urlbase = "https://testing.api.nadihealth.com";
-
-// Think times, to slow down execution
-export let thinktime1 = 0.1;
-export let thinktime2 = 2.0;
-
-// please change this later with your credential
-let username = "chris.rondonuwu@nadihealth.com";
-let password = "Made4mi123";
 
 // use this function later on other script for login
 export function accountLogin(username, password, debug) {
@@ -35,7 +28,6 @@ export function accountLogin(username, password, debug) {
 	if (typeof debug !== 'undefined') {
 		console.log("Login: status=" + String(res.status) + "  Body=" + res.body);
 	}
-	console.log(res)
 	return res;
 };
 
@@ -48,6 +40,6 @@ export default function() {
 			"login successful": (res) => JSON.parse(res.body).hasOwnProperty('token')
 		});
 		myTrend.add(res.timings.duration);
-		sleep(thinktime1);
+		sleep(0.1);
 	});
 };
