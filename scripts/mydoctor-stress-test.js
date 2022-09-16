@@ -5,11 +5,11 @@ import { Trend } from "k6/metrics";
 
 // please change this later with your credential
 let username = "chris.rondonuwu@nadihealth.com";
-let password = "Made4mi123";
+let password = "Made4mi890";
 let API_TOKEN;
 
-export let myTrend = new Trend("transaction_time");
-export let urlbase = "https://testing.api.nadihealth.com";
+let myTrend = new Trend("transaction_time");
+let urlbase = "https://staging.api.nadihealth.com";
 
 export const options = {
     stages: [

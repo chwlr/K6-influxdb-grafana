@@ -2,12 +2,14 @@ import http from "k6/http";
 import { group, sleep, check } from "k6";
 import { Trend } from "k6/metrics";
 
-export let myTrend = new Trend("transaction_time");
-export let urlbase = "https://testing.api.nadihealth.com";
+let myTrend = new Trend("transaction_time");
 
 // please change this later with your credential
 let username = "chris.rondonuwu@nadihealth.com";
-let password = "Made4mi123";
+let password = "Made4mi890";
+
+let urlbase = "https://staging.api.nadihealth.com";
+
 
 // Default runtime options
 export let options = {
