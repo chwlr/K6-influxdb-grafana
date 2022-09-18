@@ -8,20 +8,13 @@ let username = "chris.rondonuwu@nadihealth.com";
 let password = "Made4mi890";
 let API_TOKEN;
 
-let myTrend = new Trend("transaction_time");
 let urlbase = "https://staging.api.nadihealth.com";
 
 export const options = {
     stages: [
-      { duration: '1m', target: 10 }, // below normal load
-      { duration: '2m', target: 10 },
-      { duration: '1m', target: 20 }, // normal load
-      { duration: '2m', target: 20 },
-      { duration: '1m', target: 30 }, // around the breaking point
-      { duration: '2m', target: 30 },
-      { duration: '1m', target: 40 }, // beyond the breaking point
-      { duration: '2m', target: 40 },
-      { duration: '5m', target: 0 }, // scale down. Recovery stage.
+      { duration: '5m', target: 40000 }, // normal load
+      { duration: '10m', target: 40000 }, // steady
+      { duration: '5m', target: 0 }, // around the breaking point
     ],
   };
 

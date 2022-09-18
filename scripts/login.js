@@ -12,14 +12,13 @@ let urlbase = "https://staging.api.nadihealth.com";
 
 
 // Default runtime options
-export let options = {
-	vus: 1,
-	duration: '5s',
-	thresholds: {
-		transaction_time: ["avg<1000"], // Require transaction_time's average to be <1000ms
-		http_req_duration: ["avg<2000"], // Require http_req_duration's average to be <2000ms
-	}
-};
+export const options = {
+    stages: [
+      { duration: '2m', target: 5000 }, // normal load
+      { duration: '6m', target: 5000 }, // steady
+      { duration: '2m', target: 0 }, // around the breaking point
+    ],
+  };
 
 
 // use this function later on other script for login
